@@ -40,26 +40,9 @@ class Car(val brand : String)
 val car = new Car("Tata")
 car.brand
 
-class Time(val hours :Int = 0 , val minutes : Int = 0){
-  //TODO : Verify that hours is within 0 and 23
-  //TODO : Verify that minutes is within 0 and 59
-  val asMinutes = hours*60+minutes
-  def minus(that:Time):Int = asMinutes-that.asMinutes
-  def -(that:Time):Int = minus(that)
-}
 
-new Time()
-res7.hours
-val time  = new Time(10,12)
-val time1 = new Time(1,1)
-time.minus(time1)
-time minus time1
-time.-(time1)
-time - time1
 
-time.hours
-time.minutes
-time.asMinutes
+
 
 class Customer(val firstName: String)
 val customer = new Customer("Johnny")
@@ -82,3 +65,23 @@ new String("Scala") == new String("Scala")
 def name(first:String = "",last:String = ""):String = first + " " + last
 name("Sant")
 
+object Something{
+  def message  = "Hello!"
+}
+Something.message
+
+object Messaging{
+  private val defaultMessage:String= "hello!"
+}
+class Messaging(message : String = Messaging.defaultMessage){
+  println(message)
+}
+
+require(1==2, "WEIRD")
+//require(1==1, "WEIRD")
+
+object Reverse {
+  def apply(string : String) : String =
+    string.reverse
+}
+Reverse("Hello")
