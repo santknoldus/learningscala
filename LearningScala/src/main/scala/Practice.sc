@@ -85,3 +85,19 @@ object Reverse {
     string.reverse
 }
 Reverse("Hello")
+
+val vector = Vector(1,2,3)
+val seq = Seq(1,2,3)
+
+for(n <- Vector(1,2,3)) yield n+1
+
+val vec = Vector(1,2,3)
+for(elem <- vec) yield ("hello" + 1.toString)
+
+//val name = "Sant"
+val age = 22
+val message = s"My name is ${name} and I am ${age} years old."
+println(message)
+
+var name = (15, "Sant", true) //Tuple
+

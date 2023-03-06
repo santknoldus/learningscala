@@ -1,6 +1,6 @@
 package com.knoldus.learningscala
 
-class Time(val hours :Int = 0 , val minutes : Int = 0){
+case class Time(hours :Int = 0 , minutes : Int = 0){
 
   require(hours>=0 & hours<=23, "Invalid hours")
   require(minutes>=0 & minutes<=59, "Invalid minutes")
@@ -13,7 +13,7 @@ object Time extends App{
   def fromMinutes(minutes : Int) : Time = {
     val hours = minutes/60
     val minute = minutes%60
-    new Time(hours,minute)
+    Time(hours,minute)
   }
   val time  = Time.fromMinutes(61)
   println(time.hours)
