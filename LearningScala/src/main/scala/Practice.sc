@@ -89,7 +89,7 @@ Reverse("Hello")
 val vector = Vector(1,2,3)
 val seq = Seq(1,2,3)
 
-for(n <- Vector(1,2,3)) yield n+1
+for(number <- Vector(1,2,3)) yield number+1
 
 val vec = Vector(1,2,3)
 for(elem <- vec) yield ("hello" + 1.toString)
@@ -100,4 +100,26 @@ val message = s"My name is ${name} and I am ${age} years old."
 println(message)
 
 var name = (15, "Sant", true) //Tuple
+
+val doubler: Int => Int = (number: Int) => number*2
+doubler(2)
+
+val tripler: Int => Int = number => number*4
+tripler(3)
+
+val anonymousFun = (age: Int, name: String) => {
+  if(age>18){
+    println(s"$name is eligible for voting")
+  }
+  else
+    println(s"$name is under age")
+}
+anonymousFun(22,"Sant")
+
+val number = (num1: Int, num2: Int) => num1+num2+"abc"
+number(1,2)
+
+println(number)
+
+
 
