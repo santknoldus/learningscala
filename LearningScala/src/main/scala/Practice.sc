@@ -118,8 +118,17 @@ anonymousFun(22,"Sant")
 
 val number = (num1: Int, num2: Int) => num1+num2+"abc"
 number(1,2)
-
 println(number)
+
+class Class{
+  def +(value: Int):Int = value + value
+}
+val first = new Class
+println(first.+(4))
+
+println(1 +  2)
+
+
 
 
 
