@@ -1,3 +1,5 @@
+import scala.collection.mutable.ListBuffer
+
 val value =2
 
 class Hello(message : String){
@@ -6,7 +8,7 @@ class Hello(message : String){
 new Hello("I! I am Sant")
 //new Hello
 
-val sum = 1 +
+//val sum = 1 +
   2+
   3
 
@@ -121,14 +123,76 @@ number(1,2)
 println(number)
 
 class Class{
-  def +(value: Int):Int = value + value
+   override def +(value: Int):Int = value + value
 }
 val first = new Class
 println(first.+(4))
+println(+(2))
 
-println(1 +  2)
+val integer = 1
+println(s"sant\ntushar")
+println(raw"sant\ntushar")
+println(f"sant\ntushar")
 
+println(s"$integer\nsant")
 
+val string = "Sant\ntushar"
+println(raw"$string")
+println()
 
+val person = """{"name"}"""
+println(person)
 
+val person2 = """name"""
+println(person)
+println(s"${1+1} ${1+2}")
+println(s"${"name"}")
 
+val height = 1
+println(f"$height%5.2f")
+println(f"$height%.2f")
+
+val counter: (Int, Int) => Int = (value1, value2) => value1 + value2
+val curriedCounter: Int => Int => Int = value1 => value2 => value1 + value2
+counter(1,2) == 3
+curriedCounter(1)(2) == 3
+
+def somFun(n: Int)(implicit abc: Int) = ???
+implicit val abc = 2
+somFun(3)
+
+val aNumber = 3
+val matching: String = aNumber match{
+  case 1 => "first"
+  case 2 => "second"
+  case _ => "kuch bhi"
+}
+matching
+
+class DavidBanner
+
+trait Angry {
+  println("You won't like me ...")
+}
+object Test extends App {
+  val hulk = new DavidBanner with Angry
+  println(hulk)
+}
+
+val list = List(1,2,3)
+val newlist = list.updated(1,4)
+println(newlist)
+println(list)
+
+val listOfOption = List(Some("Tushar"),None,Some("Sant"))
+def tryOption(values: List[Option[String]]):List[String] = {
+  //values.map(value => value.map( value => value.toUpperCase())).flatten
+  values.flatMap(value => value.map(value => value.toUpperCase()))
+}
+
+println(tryOption(listOfOption))
+
+val optionOfList = Some(List("sant"))
+def tryListOption(values: Option[List[String]]): Option[String] = {
+  values.flatMap(value => value.map(names => names))
+}
