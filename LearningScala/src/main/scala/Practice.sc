@@ -158,7 +158,7 @@ counter(1,2) == 3
 curriedCounter(1)(2) == 3
 
 def somFun(n: Int)(implicit abc: Int) = ???
-implicit val abc = 2
+//implicit val abc = 2
 somFun(3)
 
 val aNumber = 3
@@ -190,9 +190,16 @@ def tryOption(values: List[Option[String]]):List[String] = {
   values.flatMap(value => value.map(value => value.toUpperCase()))
 }
 
+
+
 println(tryOption(listOfOption))
 
 val optionOfList = Some(List("sant"))
 def tryListOption(values: Option[List[String]]): Option[String] = {
   values.flatMap(value => value.map(names => names))
 }
+
+implicit val firstName: String= "Info"
+implicit val LastName: Int= 1
+def log(implicit firstName: String,lastName: Int) = println(s"$firstName $lastName")
+log
