@@ -123,7 +123,7 @@ number(1,2)
 println(number)
 
 class Class{
-   override def +(value: Int):Int = value + value
+  def +(value: Int):Int = value + value
 }
 val first = new Class
 println(first.+(4))
@@ -195,11 +195,34 @@ def tryOption(values: List[Option[String]]):List[String] = {
 println(tryOption(listOfOption))
 
 val optionOfList = Some(List("sant"))
-def tryListOption(values: Option[List[String]]): Option[String] = {
-  values.flatMap(value => value.map(names => names))
-}
+//def tryListOption(values: Option[List[String]]): Option[String] = {
+//  values.flatMap(value => value.map(names => names))
+//}
 
 implicit val firstName: String= "Info"
 implicit val LastName: Int= 1
 def log(implicit firstName: String,lastName: Int) = println(s"$firstName $lastName")
 log
+
+
+val list2 = List(1, 1, 2, 3, 5, 8)
+println(list2.last)
+def findinglast(list: List[Int]): Int = list match {
+  case head :: Nil => head
+  case _ :: tail => findinglast(tail)
+  case _ => throw new NoSuchElementException()
+}
+println(findinglast(list2))
+
+def findingsecondlast(list: List[Int]): Int = list match {
+  case first :: _ :: Nil => first
+  case _ :: tail => findingsecondlast(tail)
+  case _ => throw new NoSuchElementException()
+}
+println(findingsecondlast(list2))
+
+def findKthelement(list: List[Int]): Int = list match {
+  case
+}
+
+

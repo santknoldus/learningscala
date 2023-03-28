@@ -2,17 +2,17 @@ package com.knoldus.learningscala
 
 
 
-abstract class Student[-T]
+abstract class Student[T]
 {
   def name: T
 }
 
-case class Girls[T](name: T) extends Student[-T]
+case class Girls[T](name: T) extends Student[T]
 
 case class Boys[T](name: T) extends Student[T]
 
 object Covariance extends App {
-  def Studentnames(students: List[Boys[String]]): Unit = {
+  def Studentnames(students: List[Student[String]]): Unit = {
     students.foreach { student =>
       println(student.name)
     }
