@@ -221,8 +221,10 @@ def findingsecondlast(list: List[Int]): Int = list match {
 }
 println(findingsecondlast(list2))
 
-def findKthelement(list: List[Int]): Int = list match {
-  case
-}
+//def findKthelement(list: List[Int]): Int = list match {
+//  case
+//}
 
-
+val url = "https://www.mywebsite.com/home"
+println(url.indexOf("://"))
+println(url.substring(url.indexOf("://") + 3, url.indexOf("/",url.indexOf("://")+3)))
