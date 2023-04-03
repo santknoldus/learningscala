@@ -1,32 +1,36 @@
+import scala.annotation.{tailrec, targetName}
 import scala.collection.mutable.ListBuffer
 
-val value =2
+val value = 2
 
-class Hello(message : String){
+class Hello(message: String) {
   println(message)
 }
+
 new Hello("I! I am Sant")
 //new Hello
 
 //val sum = 1 +
-  2+
+2 +
   3
 
-class Message(message: String){
+class Message(message: String) {
   def this() = this("Hello")
+
   println(message)
 }
+
 new Message
 new Message("Hi!")
 
-class MyName{
-  val message : String = "Sant"
+class MyName {
+  val message: String = "Sant"
 }
 
 (new MyName).message
 
 class Greet {
-  var message : String = "Hello world"
+  var message: String = "Hello world"
 }
 
 val greet = new Greet
@@ -38,21 +42,20 @@ greet.message
 //val car = new Car("Tata")
 //car.brand
 
-class Car(val brand : String)
+class Car(val brand: String)
+
 val car = new Car("Tata")
 car.brand
 
 
-
-
-
 class Customer(val firstName: String)
+
 val customer = new Customer("Johnny")
 
 def Hello = "Hello"
 Hello
 
-def echo(message:String):String = message
+def echo(message: String): String = message
 echo("Hi i am Sant")
 
 "Sant Singh".split(" ")
@@ -64,37 +67,40 @@ new String("Scala") == new String("Scala")
 //def name(first:String,last:String):String = first + " " + last
 //name("Sant","Singh")
 
-def name(first:String = "",last:String = ""):String = first + " " + last
+def name(first: String = "", last: String = ""): String = first + " " + last
 name("Sant")
 
-object Something{
-  def message  = "Hello!"
+object Something {
+  def message = "Hello!"
 }
+
 Something.message
 
-object Messaging{
-  private val defaultMessage:String= "hello!"
+object Messaging {
+  private val defaultMessage: String = "hello!"
 }
-class Messaging(message : String = Messaging.defaultMessage){
+
+class Messaging(message: String = Messaging.defaultMessage) {
   println(message)
 }
 
-require(1==2, "WEIRD")
+require(1 == 2, "WEIRD")
 //require(1==1, "WEIRD")
 
 object Reverse {
-  def apply(string : String) : String =
+  def apply(string: String): String =
     string.reverse
 }
+
 Reverse("Hello")
 
-val vector = Vector(1,2,3)
-val seq = Seq(1,2,3)
+val vector = Vector(1, 2, 3)
+val seq = Seq(1, 2, 3)
 
-for(number <- Vector(1,2,3)) yield number+1
+for (number <- Vector(1, 2, 3)) yield number + 1
 
-val vec = Vector(1,2,3)
-for(elem <- vec) yield ("hello" + 1.toString)
+val vec = Vector(1, 2, 3)
+for (elem <- vec) yield ("hello" + 1.toString)
 
 //val name = "Sant"
 val age = 22
@@ -103,28 +109,29 @@ println(message)
 
 var name = (15, "Sant", true) //Tuple
 
-val doubler: Int => Int = (number: Int) => number*2
+val doubler: Int => Int = (number: Int) => number * 2
 doubler(2)
 
-val tripler: Int => Int = number => number*4
+val tripler: Int => Int = number => number * 4
 tripler(3)
 
 val anonymousFun = (age: Int, name: String) => {
-  if(age>18){
+  if (age > 18) {
     println(s"$name is eligible for voting")
   }
   else
     println(s"$name is under age")
 }
-anonymousFun(22,"Sant")
+anonymousFun(22, "Sant")
 
-val number = (num1: Int, num2: Int) => num1+num2+"abc"
-number(1,2)
+val number = (num1: Int, num2: Int) => num1 + num2 + "abc"
+number(1, 2)
 println(number)
 
-class Class{
-  def +(value: Int):Int = value + value
+class Class {
+  def +(value: Int): Int = value + value
 }
+
 val first = new Class
 println(first.+(4))
 println(+(2))
@@ -145,7 +152,7 @@ println(person)
 
 val person2 = """name"""
 println(person)
-println(s"${1+1} ${1+2}")
+println(s"${1 + 1} ${1 + 2}")
 println(s"${"name"}")
 
 val height = 1
@@ -154,7 +161,7 @@ println(f"$height%.2f")
 
 val counter: (Int, Int) => Int = (value1, value2) => value1 + value2
 val curriedCounter: Int => Int => Int = value1 => value2 => value1 + value2
-counter(1,2) == 3
+counter(1, 2) == 3
 curriedCounter(1)(2) == 3
 
 def somFun(n: Int)(implicit abc: Int) = ???
@@ -162,7 +169,7 @@ def somFun(n: Int)(implicit abc: Int) = ???
 somFun(3)
 
 val aNumber = 3
-val matching: String = aNumber match{
+val matching: String = aNumber match {
   case 1 => "first"
   case 2 => "second"
   case _ => "kuch bhi"
@@ -174,22 +181,22 @@ class DavidBanner
 trait Angry {
   println("You won't like me ...")
 }
+
 object Test extends App {
   val hulk = new DavidBanner with Angry
   println(hulk)
 }
 
-val list = List(1,2,3)
-val newlist = list.updated(1,4)
+val list = List(1, 2, 3)
+val newlist = list.updated(1, 4)
 println(newlist)
 println(list)
 
-val listOfOption = List(Some("Tushar"),None,Some("Sant"))
-def tryOption(values: List[Option[String]]):List[String] = {
+val listOfOption = List(Some("Tushar"), None, Some("Sant"))
+def tryOption(values: List[Option[String]]): List[String] = {
   //values.map(value => value.map( value => value.toUpperCase())).flatten
   values.flatMap(value => value.map(value => value.toUpperCase()))
 }
-
 
 
 println(tryOption(listOfOption))
@@ -199,14 +206,15 @@ val optionOfList = Some(List("sant"))
 //  values.flatMap(value => value.map(names => names))
 //}
 
-implicit val firstName: String= "Info"
-implicit val LastName: Int= 1
-def log(implicit firstName: String,lastName: Int) = println(s"$firstName $lastName")
+implicit val firstName: String = "Info"
+implicit val LastName: Int = 1
+def log(implicit firstName: String, lastName: Int) = println(s"$firstName $lastName")
 log
 
 
 val list2 = List(1, 1, 2, 3, 5, 8)
 println(list2.last)
+@tailrec
 def findinglast(list: List[Int]): Int = list match {
   case head :: Nil => head
   case _ :: tail => findinglast(tail)
@@ -214,6 +222,7 @@ def findinglast(list: List[Int]): Int = list match {
 }
 println(findinglast(list2))
 
+@tailrec
 def findingsecondlast(list: List[Int]): Int = list match {
   case first :: _ :: Nil => first
   case _ :: tail => findingsecondlast(tail)
@@ -227,4 +236,59 @@ println(findingsecondlast(list2))
 
 val url = "https://www.mywebsite.com/home"
 println(url.indexOf("://"))
-println(url.substring(url.indexOf("://") + 3, url.indexOf("/",url.indexOf("://")+3)))
+println(url.substring(url.indexOf("://") + 3, url.indexOf("/", url.indexOf("://") + 3)))
+
+//val numList = List(1,2,3,4,5)
+//val sumresult = for {
+//  num <- numList
+//  sum: Int = sum + num
+//} yield sum
+//
+//println(sumresult)
+
+val numbers = List(1, 2, 3)
+val characters = List('a', 'b', 'c')
+val combinations = numbers.flatMap(number => characters.map(char => "" + char + number))
+println(combinations)
+
+val list3 = List('a', 'b', 'c')
+val list4 = List(1, 2, 3)
+val list5 = List('a', 'b', 'c')
+val list6 = List(1, 2, 3)
+
+val string1 = "abc"
+val string2 = "abc"
+
+2 eq 3
+
+println("==")
+println(list3 == list5)
+println(list3 == list4)
+println("equals")
+list4 equals(list6)
+list4 equals list5
+println("eq")
+list3 eq list5
+list4 eq list5
+string1 eq string2
+println(string1.getClass)
+
+
+val string4 = new String("1")
+val string5 = new String("1")
+string4 eq string5
+
+val list8 = List(1, 2, 3)
+val list7 = List(2, 1, 3)
+println(list8 == list7)
+
+def operation(fun: (Int, Int) => Int, operand1: Int, operand2: Int): Double = {
+  fun(operand1, operand2)
+}
+
+val num1 = 12
+val num2 = 12
+
+println(operation((num1, num2) => num1 + num2, num1, num2))
+
+
