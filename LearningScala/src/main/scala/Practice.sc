@@ -265,7 +265,7 @@ println("==")
 println(list3 == list5)
 println(list3 == list4)
 println("equals")
-list4 equals(list6)
+list4 equals (list6)
 list4 equals list5
 println("eq")
 list3 eq list5
@@ -291,4 +291,35 @@ val num2 = 12
 
 println(operation((num1, num2) => num1 + num2, num1, num2))
 
+val someFun: Int => Int = x => 42 / x
+val divide = (x: Int) => 42 / x
+println(divide(7))
+println(someFun(7))
 
+val againDivide = new PartialFunction[Int,Int] {
+  def apply(x: Int) = 42 /x
+  override def isDefinedAt(x: Int): Boolean = x != 0
+}
+
+println(againDivide.isDefinedAt(1))
+
+val convertLowNumToString = new PartialFunction[Int, String] {
+  val nums = Array("one", "two", "three", "four", "five")
+  def apply(i: Int) = nums(i-1)
+  def isDefinedAt(i: Int) = i > 0 && i < 6
+}
+
+trait A
+trait B
+
+new A {}
+new A with B
+
+def reverse(word: String): String = {
+  (for(index <- word.length-1 to 0 by -1) yield word(index)).mkString
+}
+println(reverse("abc"))
+
+val phoneBook = Map(("Jim", 500),("Sant",400))
+phoneBook.map(pair => pair._1.toLowerCase() -> pair._2)
+phoneBook.view.filterKeys(x => x.startsWith("J")).toMap
