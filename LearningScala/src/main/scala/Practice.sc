@@ -323,3 +323,108 @@ println(reverse("abc"))
 val phoneBook = Map(("Jim", 500),("Sant",400))
 phoneBook.map(pair => pair._1.toLowerCase() -> pair._2)
 phoneBook.view.filterKeys(x => x.startsWith("J")).toMap
+//
+def friend(network: Map[String, Set[String]],a: String,b: String): Map[String, Set[String]] = {
+  val friendsA = network(a)
+  val friendsB = network(b)
+
+  network + (a -> (friendsA + b)) + (b -> (friendsB + a))
+}
+
+val network: Map[String, Set[String]] = Map(("Sant",Set("aa","bb")),("Tushar",Set("gg","ff")))
+
+friend(network,"Sant", "Tushar")
+
+network.updated("Sant",Set())
+
+val listOfTuple = List((1,2),("s",1))
+
+val iter = Iterator(2, 4, 5, 1, 13)
+iter.find(x => {x % 2 != 0})
+
+val newList = List(1,2,6,4,6)
+newList.indexOf(newList.max)
+
+val names = List("sant","tushar")
+val otherNames = List("akhil")
+for {name <- names
+     name2 <- otherNames
+     }yield name + name2
+
+val myTuple = (1,"sss",3.22,true)
+myTuple._3
+
+network.get("Sant")
+
+val numbersList = List(1,2,3,4,5)
+val chars = List("a","b")
+numbersList.flatMap(num => chars.map(char => char + num))
+
+val double = 2.3
+double == double.toInt
+
+def execute(caseClass: CaseClass): Seq[Double] = {
+  @tailrec
+  def fibonacci(number: Double,first: Double = 0, second: Double = 1, list: Seq[Double]): Seq[Double] = {
+    if (number == 0) list
+    else fibonacci(number-1, second, second+first, list :+ first)
+  }
+
+  fibonacci(caseClass.operands.head,0,1,Seq(1,2))
+}
+
+try{
+  execute(CaseClass(Seq(10)))
+} catch {
+  case exception => exception.printStackTrace()
+
+}
+case class CaseClass(operands: Seq[Double])
+
+enum Color:
+  case Red, Green, Blue
+val x = Color.Red
+
+/*enum Colors(val rgb: Int):
+  case Red extends Colors(0)
+  case Blue extends Colors(1)*/
+
+val immutableList = List(1,2)
+val immutableList2 = List(3,4)
+val listOfList = List() :+ immutableList :+ immutableList2
+
+def stringConcat(string1: String, string2: String): String = {
+  string1 + string2
+}
+val result = stringConcat(_, "Singh")
+println(result("Sant"))
+
+case class Human(name: String, age: Int)
+
+Human("Tushar",23) match {
+  case human  => if(human.age>25)println("Valid")
+}
+
+class Person(){}
+object Person{
+  def apply(name: String) = name
+  def apply(name: String, age: Int) = println(name + " " + age)
+}
+val person3 = Person("Tushar")
+Person("SAnt", 25)
+
+val nums = (1 to 5).toList
+nums.sliding(2).toList
+
+def duplicate[A](element: A, times: Int): List[A] = {
+  if (times <= 0) {
+    List.empty
+  } else {
+    element :: duplicate(element, times - 1)
+  }
+}
+
+val someList: List[List[List[Int]]] = List(List(List(1)))
+
+val someList2 = someList.flatMap(element => element).flatten
+
