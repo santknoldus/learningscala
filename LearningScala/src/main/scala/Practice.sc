@@ -312,7 +312,7 @@ val convertLowNumToString = new PartialFunction[Int, String] {
 trait A
 trait B
 
-new A {}
+val newA = new A {}
 new A with B
 
 def reverse(word: String): String = {
@@ -398,6 +398,7 @@ def stringConcat(string1: String, string2: String): String = {
 }
 val result = stringConcat(_, "Singh")
 println(result("Sant"))
+result("Tushar")
 
 case class Human(name: String, age: Int)
 
@@ -428,3 +429,15 @@ val someList: List[List[List[Int]]] = List(List(List(1)))
 
 val someList2 = someList.flatMap(element => element).flatten
 
+val kjbd = Seq(1,2,3,4,5,6,6,7)
+val gfgf = List("hi",2,3)
+val gfg = Seq("hi",2,3)
+
+val xx = "hiiiii jj kk"
+xx.split(" ").map(_.capitalize).mkString(" ")
+
+var char = '1'
+char.isValidChar
+
+val fullName = "Sant Singh"
+fullName.split(" ")

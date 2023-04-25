@@ -14,7 +14,7 @@ object PartialFunctionPractice extends App{
 
   }
 
-  partialFunction.isDefinedAt(2)
+  println(partialFunction.isDefinedAt(2))
 
   val partialFunctionUsingCase: PartialFunction[Int, Int] = {
 
@@ -22,7 +22,7 @@ object PartialFunctionPractice extends App{
     case num if (num % 2) == 0 => num / 2
   }
 
-  println(partialFunctionUsingCase(2))
+  //println(partialFunctionUsingCase(2))
 
 
   val divide = new PartialFunction[Int, String] {
