@@ -1,7 +1,7 @@
 package com.knoldus.learningscala
 
-import scala.concurrent.Future
 import scala.concurrent.ExecutionContext.Implicits.global
+import scala.concurrent.Future
 
 object PracticeF extends App {
 
@@ -12,7 +12,7 @@ object PracticeF extends App {
 
   val futureResult: Future[Int] = Future {
     longRunningComputation(42)
-  }.recoverWith{
+  }.recoverWith {
     case ex => ex.getMessage
       Future.successful(0)
   }
@@ -26,5 +26,12 @@ object PracticeF extends App {
 
   println("Doing some more work...")
 
- // Thread.sleep(10000)
+
+  val futureToFail = Future.failed(new Exception())
+
+  val failedFuture = futureToFail.recover {
+    case ex: Exception => ex.getMessage
+  }
+  println(failedFuture)
+  Thread.sleep(10000)
 }

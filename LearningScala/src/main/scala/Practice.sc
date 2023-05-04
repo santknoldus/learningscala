@@ -1,5 +1,6 @@
 import scala.annotation.{tailrec, targetName}
 import scala.collection.mutable.ListBuffer
+import scala.concurrent.Future
 
 val value = 2
 
@@ -296,8 +297,9 @@ val divide = (x: Int) => 42 / x
 println(divide(7))
 println(someFun(7))
 
-val againDivide = new PartialFunction[Int,Int] {
-  def apply(x: Int) = 42 /x
+val againDivide = new PartialFunction[Int, Int] {
+  def apply(x: Int) = 42 / x
+
   override def isDefinedAt(x: Int): Boolean = x != 0
 }
 
@@ -305,59 +307,64 @@ println(againDivide.isDefinedAt(1))
 
 val convertLowNumToString = new PartialFunction[Int, String] {
   val nums = Array("one", "two", "three", "four", "five")
-  def apply(i: Int) = nums(i-1)
+
+  def apply(i: Int) = nums(i - 1)
+
   def isDefinedAt(i: Int) = i > 0 && i < 6
 }
 
 trait A
+
 trait B
 
 val newA = new A {}
 new A with B
 
 def reverse(word: String): String = {
-  (for(index <- word.length-1 to 0 by -1) yield word(index)).mkString
+  (for (index <- word.length - 1 to 0 by -1) yield word(index)).mkString
 }
 println(reverse("abc"))
 
-val phoneBook = Map(("Jim", 500),("Sant",400))
+val phoneBook = Map(("Jim", 500), ("Sant", 400))
 phoneBook.map(pair => pair._1.toLowerCase() -> pair._2)
 phoneBook.view.filterKeys(x => x.startsWith("J")).toMap
 //
-def friend(network: Map[String, Set[String]],a: String,b: String): Map[String, Set[String]] = {
+def friend(network: Map[String, Set[String]], a: String, b: String): Map[String, Set[String]] = {
   val friendsA = network(a)
   val friendsB = network(b)
 
   network + (a -> (friendsA + b)) + (b -> (friendsB + a))
 }
 
-val network: Map[String, Set[String]] = Map(("Sant",Set("aa","bb")),("Tushar",Set("gg","ff")))
+val network: Map[String, Set[String]] = Map(("Sant", Set("aa", "bb")), ("Tushar", Set("gg", "ff")))
 
-friend(network,"Sant", "Tushar")
+friend(network, "Sant", "Tushar")
 
-network.updated("Sant",Set())
+network.updated("Sant", Set())
 
-val listOfTuple = List((1,2),("s",1))
+val listOfTuple = List((1, 2), ("s", 1))
 
 val iter = Iterator(2, 4, 5, 1, 13)
-iter.find(x => {x % 2 != 0})
+iter.find(x => {
+  x % 2 != 0
+})
 
-val newList = List(1,2,6,4,6)
+val newList = List(1, 2, 6, 4, 6)
 newList.indexOf(newList.max)
 
-val names = List("sant","tushar")
+val names = List("sant", "tushar")
 val otherNames = List("akhil")
 for {name <- names
      name2 <- otherNames
-     }yield name + name2
+     } yield name + name2
 
-val myTuple = (1,"sss",3.22,true)
+val myTuple = (1, "sss", 3.22, true)
 myTuple._3
 
 network.get("Sant")
 
-val numbersList = List(1,2,3,4,5)
-val chars = List("a","b")
+val numbersList = List(1, 2, 3, 4, 5)
+val chars = List("a", "b")
 numbersList.flatMap(num => chars.map(char => char + num))
 
 val double = 2.3
@@ -365,32 +372,34 @@ double == double.toInt
 
 def execute(caseClass: CaseClass): Seq[Double] = {
   @tailrec
-  def fibonacci(number: Double,first: Double = 0, second: Double = 1, list: Seq[Double]): Seq[Double] = {
+  def fibonacci(number: Double, first: Double = 0, second: Double = 1, list: Seq[Double]): Seq[Double] = {
     if (number == 0) list
-    else fibonacci(number-1, second, second+first, list :+ first)
+    else fibonacci(number - 1, second, second + first, list :+ first)
   }
 
-  fibonacci(caseClass.operands.head,0,1,Seq(1,2))
+  fibonacci(caseClass.operands.head, 0, 1, Seq(1, 2))
 }
 
-try{
+try {
   execute(CaseClass(Seq(10)))
 } catch {
   case exception => exception.printStackTrace()
 
 }
+
 case class CaseClass(operands: Seq[Double])
 
 enum Color:
   case Red, Green, Blue
+
 val x = Color.Red
 
 /*enum Colors(val rgb: Int):
   case Red extends Colors(0)
   case Blue extends Colors(1)*/
 
-val immutableList = List(1,2)
-val immutableList2 = List(3,4)
+val immutableList = List(1, 2)
+val immutableList2 = List(3, 4)
 val listOfList = List() :+ immutableList :+ immutableList2
 
 def stringConcat(string1: String, string2: String): String = {
@@ -402,15 +411,18 @@ result("Tushar")
 
 case class Human(name: String, age: Int)
 
-Human("Tushar",23) match {
-  case human  => if(human.age>25)println("Valid")
+Human("Tushar", 23) match {
+  case human => if (human.age > 25) println("Valid")
 }
 
-class Person(){}
-object Person{
+class Person() {}
+
+object Person {
   def apply(name: String) = name
+
   def apply(name: String, age: Int) = println(name + " " + age)
 }
+
 val person3 = Person("Tushar")
 Person("SAnt", 25)
 
@@ -429,9 +441,9 @@ val someList: List[List[List[Int]]] = List(List(List(1)))
 
 val someList2 = someList.flatMap(element => element).flatten
 
-val kjbd = Seq(1,2,3,4,5,6,6,7)
-val gfgf = List("hi",2,3)
-val gfg = Seq("hi",2,3)
+val kjbd = Seq(1, 2, 3, 4, 5, 6, 6, 7)
+val gfgf = List("hi", 2, 3)
+val gfg = Seq("hi", 2, 3)
 
 val xx = "hiiiii jj kk"
 xx.split(" ").map(_.capitalize).mkString(" ")
@@ -441,3 +453,123 @@ char.isValidChar
 
 val fullName = "Sant Singh"
 fullName.split(" ")
+
+trait Edge {
+  def a: String
+
+  def b: String
+}
+
+case class EdgeQA(override val a: String, override val b: String, right: Int, asked: Int) extends Edge
+
+class EdgeB {
+  val edgeQA = EdgeQA("aa", "bb", 2, 3)
+  val x = edgeQA.a
+}
+
+/**
+ * avoid using vals over def in trait
+ * using abstract vals can cause
+ * initialisation problems: */
+trait Foo {
+  val bar: Int
+  val schoko = bar + bar
+}
+
+object Fail extends Foo {
+  val bar = 33
+}
+
+Fail.schoko // zero!!
+
+//Compare:
+trait Foo1 {
+  def bar: Int
+}
+
+object F1 extends Foo1 {
+  def bar = util.Random.nextInt(33)
+} // ok
+
+class F2(val bar: Int) extends Foo1 // ok
+
+object F3 extends Foo1 {
+  lazy val bar = { // ok
+    Thread.sleep(5000) // really heavy number crunching
+    42
+  }
+}
+
+//If you had
+
+trait Foo2 {
+  val bar: Int
+}
+//you wouldn't be able to define F1 or F3.
+
+case class Foo3(i: Int)
+
+class Bar(i: Int, s: String) extends Foo3(i)
+//case class Foo5(s: Int) extends Foo3(s)  not possible
+
+val password1 = "JohnDoe123$"
+val userFullName = "John Doe"
+val splitUserFullName = userFullName.split(' ').toList.map(name => name.toLowerCase)
+splitUserFullName.forall(name => password1.contains(name))
+password1.toLowerCase.contains(splitUserFullName.tail)
+splitUserFullName.exists(password1.toLowerCase.contains)
+
+val someString = "aliaen"
+
+def firstNonRepetitiveChar(string: String): Char = {
+  @tailrec
+  def helper(list: List[Char]): Char = list match {
+    case Nil => ' '
+    case head :: Nil => head
+    case head :: tail if (!tail.contains(head)) => head
+    case head :: tail if (tail.contains(head)) => helper(tail)
+  }
+
+  helper(List(string).flatten)
+}
+
+firstNonRepetitiveChar(someString)
+
+/**
+Sorting list of list on the basis on
+length of sublist*/
+
+val listOfListOfInt = List(List(1, 2), List(1), List(4, 5, 2))
+
+def sortingListOfList[T](list: List[List[T]]): List[List[T]] = {
+  def lsort(list: List[List[T]]): List[List[T]] = list match {
+    case first :: second :: tail if (first.length > second.length) => second +: lsort(first +: tail)
+    case first :: tail => first +: lsort(tail)
+    case Nil => Nil
+  }
+
+  val sortedList = lsort(list)
+  if (sortedList == list) sortedList
+  else sortingListOfList(sortedList)
+}
+
+sortingListOfList(listOfListOfInt)
+
+List(1,1,1,2).length
+List(1,1,1,2).size
+
+val touple: (Int, String, String, Int) = (1,"Sant","Singh",25)
+touple._1
+
+List() :+ List("a", "a", "a", "a", "b", "c", "c", "a", "a", "d", "e", "e", "e", "e").takeWhile(_=="a")
+
+List("String").flatten
+
+"a"*2
+
+List(1,2,3) == List(3,2,1)
+
+def curryfun(x: Int, y: Int, f: Int => Int): Int = {
+f(x) + f(y)
+}
+curryfun(4,5,x=>x*x)

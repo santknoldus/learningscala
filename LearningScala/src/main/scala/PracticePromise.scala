@@ -2,18 +2,18 @@ package com.knoldus.learningscala
 
 import scala.concurrent.*
 import scala.concurrent.ExecutionContext.Implicits.global
-import scala.util.{Failure, Success}
+import scala.util.{Try,Failure, Success}
 
 object PracticePromise extends App {
   def getData(): Future[String] = {
-    val promise = Promise[String]()
+    val promise = Promise[String]
     // Perform some asynchronous operation to retrieve data
     // ...
-//    if (operationSuccessful) {
-//      promise.success(result)
-//    } else {
-//      promise.failure(new Exception("Failed to retrieve data"))
-//    }
+    /* if (operationSuccessful) {
+      promise.success(result)
+    } else {
+      promise.failure(new Exception("Failed to retrieve data"))
+    }*/
     promise.future
   }
 
@@ -22,6 +22,11 @@ object PracticePromise extends App {
     case Success(data) => println(s"Data: $data")
     case Failure(error) => println(s"Error: ${error.getMessage}")
   }
+  val p = Promise[Int]
+  val x = p.success(100)
+  println(x)
+  val pricesPromise = Seq(p.success(100001), p.success(20001))
+  println(pricesPromise)
 }
 
 /**

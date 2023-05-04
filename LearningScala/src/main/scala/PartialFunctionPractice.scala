@@ -22,7 +22,7 @@ object PartialFunctionPractice extends App{
     case num if (num % 2) == 0 => num / 2
   }
 
-  //println(partialFunctionUsingCase(2))
+  println(partialFunctionUsingCase(3))
 
 
   val divide = new PartialFunction[Int, String] {
